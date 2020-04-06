@@ -80,7 +80,7 @@
 
 \begin{abstract}
 In this report, we will study a challenge proposed through Kaggle by ASHRAE in $2019$, with the aim to develop accurate models of metered building energy usage in the following areas: chilled water, electricity, hot water, and steam meters. Indeed, thankfully, significant investments are being made to improve building efficiencies to reduce costs and emissions, and, under pay-for-performance financing, building owners make payments based on the difference between their real energy consumption and what they would have used without any retrofits. Thus, with better estimates of these energy-saving actions, large scale investors and financial institutions will be more inclined to invest to enable progress in building efficiencies.
-\keywords{Kaggle \and ASHRAE \and Machine Learning \and Extreme Gradient Boosting Regressor \and Light Gradient Boosting Machine Regressor \and Shapley Additive Explanations}
+\keywords{Kaggle \and ASHRAE \and Machine Learning \and Extreme Gradient Boosting \and Light Gradient Boosting Machine \and Shapley Additive Explanations}
 \end{abstract}
 
 \vspace{1cm}
@@ -105,7 +105,7 @@ Indeed, thankfully, significant investments are being made to improve building e
 
 Current methods of estimation are fragmented and do not scale well, some assume a specific meter type or don’t work with different building types.
 
-As challenge's title indicates, it's not the first time ASHRAE is involved in this type of activities, it has previously hosted $2$ data competitions, called "Great Building Energy Predictor Shootout I" ($1993$) \cite{Kreider_1994} and "Great Building Energy Predictor Shootout II" ($1994$) \cite{Haberl_1998}. For both competitions, participants were asked to develop empirical models for predicting building energy consumption from data sets, and to compare how these models could be used to forecast energy usage (Shootout I) and to calculate energy conservation retrofit savings (Shootout II).
+As challenge's title indicates, it's not the first time ASHRAE is involved in this type of activities, it has previously hosted $2$ data competitions, called "Great Building Energy Predictor Shootout I" ($1993$) \cite{Kreider_1994} and "Great Building Energy Predictor Shootout II" ($1994$) \cite{Haberl_1998}. For both competitions, participants were asked to develop empirical models for predicting building energy consumption from data sets, and to compare how these models could be used to forecast energy usage (Shootout I) and calculate energy conservation retrofit savings (Shootout II).
 
 For history, the $1994$ competition asked participants to retrieve the competition training data set via an FTP server and teams were required to submit their empirical models along with predictions via floppy disks. Each submitted package included predictions of energy savings and a sufficient explanation of how the specific method (calculation method, data removal\ldots) was applied: Submissions using black-box, or proprietary methods, were disqualified. It was a combination accuracy metric of CV-RMSE (Coefficient of Root Mean Square Error) and MBE (Mean Bias Error) that was used to evaluate prediction accuracy. While this $1994$ competition awarded no monetary prizes, over $150$ teams competed, and $6$ winning teams were formally recognized and asked to write an ASHRAE paper for presenting at ASHRAE conferences to document their efforts: As a part of these efforts, over a dozen peer-reviewed papers were published (e.g., see \cite{MacKay_1994}, winning contribution for "Great Building Energy Predictor Shootout I" ($1993$), or \cite{Dodier_2004}, winning contribution for "Great Building Energy Predictor Shootout II" ($1994$)) and several software vendors incorporated the algorithms described in these papers.
 
@@ -117,7 +117,7 @@ To allow participants to build their solution to tackle the proposed challenge, 
 
 For the challenge, the data comes from over $1,000$ buildings over a $3$-year timeframe: To summarize---data will be discussed more in detail latter---, over the $3$-year timeframe, it has been provided information about energy usage (electricity, chilled water, steam and hot water) registered on various buildings, with different characteristics, according to the various weather conditions that have happened.
 
-The design of our study plan is largely inspired by \cite{Geron_2017} and focuses on "benchmarking" $2$ currently popular and very performant methods: Extreme Gradient Boosting (also known as XGBoost, see \cite{Chen_2016}) and Light Gradient Boosting Machine (also known as LightGBM, see \cite{Ke_2017}).
+The design of our study plan is largely inspired by \cite{Geron_2017} and focuses on "benchmarking" $2$ current popular and very performant methods: Extreme Gradient Boosting (also known as XGBoost, see \cite{Chen_2016}) and Light Gradient Boosting Machine (also known as LightGBM, see \cite{Ke_2017}).
 
 Finally, it can be noticed that our study has been technically supported and run on a machine (see Table \ref{tab:hardware}) with following hardware main characteristics:
 
@@ -150,7 +150,7 @@ Sudden Motion Sensor State & Enabled \\
 
 The core data on which the prediction models will be constructed is reported on $6$ tabular data files:
 \begin{itemize}
-\item \textit{building\_metadata.csv}: Key characteristics of the buildings taken into account for the study (building identification, primary category of activities\footnote{Indicator based on EnergyStar property type definitions, see more detail here: \url{https://www.energystar.gov/buildings/facility-owners-and-managers/existing-buildings/use-portfolio-manager/identify-your-property-type}}, gross floor area, opening year and number of floors);
+\item \textit{building\_metadata.csv}: Key characteristics of the buildings taken into account for the study (building identification, primary category of activities\footnote{Indicator based on EnergyStar property type definitions, see more detail here: \url{https://www.energystar.gov/buildings/facility-owners-and-managers/existing-buildings/use-portfolio-manager/identify-your-property-type}.}, gross floor area, opening year and number of floors);
 \item \textit{sample\_submission.csv}: Correct format for submitting predictions for the challenge;
 \item \textit{test.csv}: Testing set (building identification, primary category of activities and timestamp);
 \item \textit{train.csv}: Training set (building identification, primary category of activities, timestamp and energy consumption);
@@ -236,7 +236,7 @@ Where:
 \item $\ln$ is the natural logarithm function.
 \end{itemize}
 
-Although Root Mean Square Error (RMSE) is generally the quality metric used for regression problems, RMSLE is more in more put to contribution.
+Although Root Mean Square Error (RMSE) is generally the quality metric used for regression problems, RMSLE is more and more put to contribution for these problems.
 
 %% Data Comprehension %%
 
@@ -249,9 +249,9 @@ Although Root Mean Square Error (RMSE) is generally the quality metric used for 
 The first tabular data file lists some aspects of the buildings taken into account for this study (see Table \ref{tab:building}). Several elements are interesting to observe:
 
 \begin{itemize}
-\item Buildings' primary use repartition on the data set exploted for the study (see Figure \ref{fig:buildings_primary_use_repartition});
-\item Buildings' repartition by site ID on the data set exploted for the study (see Figure \ref{fig:buildings_repartition_by_site_id});
-\item Buildings' gross floor area variability on the data set exploted for the study (see Figure \ref{fig:buildings_gross_floor_area}).
+\item Buildings' primary use repartition on the data set exploited for the study (see Figure \ref{fig:buildings_primary_use_repartition});
+\item Buildings' repartition by site ID on the data set exploited for the study (see Figure \ref{fig:buildings_repartition_by_site_id});
+\item Buildings' gross floor area variability on the data set exploited for the study (see Figure \ref{fig:buildings_gross_floor_area}).
 \end{itemize}
 
 \begin{figure}[H]
@@ -278,8 +278,8 @@ The first tabular data file lists some aspects of the buildings taken into accou
 Some statements can be made:
 
 \begin{itemize}
-\item It appears that for this study, the primary use of the buildings that have been taken into account is reparted around $16$ categories, not very well balanced, with a large majority of them (more than a third) dedicated to education. We can suppose that this feature has a great incidence over a building energy consumption, independently of its other characteristics: Indeed, a building dedicated to education works a very different way from another dedicated to religious worship, for example. Thus, it is quite probable that the prediction models we are going to build will present some kind of bias, due to the fact that they will be in a great part built thanks education buildings, and, so, will be consistant with this type of buildings, but probably not so with other types of buildings;
-\item The buildings taken into account for this study are reparted around 16 different geographical sites, with their own specific weather conditions. As for previous conclusion, the observed repartition is not well balanced, thus, too, it is quite probable that the prediction models we are going to built will present some king of bias, due to the fact that during the training they will be more exposed to some specific weather conditions;
+\item It appears that for this study, the primary use of the buildings that have been taken into account is reparted around $16$ categories, not very well balanced, with a large majority of them (more than a third) dedicated to education. We can suppose that this feature has a great incidence over a building energy consumption, independently of its other characteristics: Indeed, a building dedicated to education works a very different way from another dedicated to religious worship, for example. Thus, it is quite probable that the prediction models we are going to build will present some kind of bias, due to the fact that they will be, in a great part, built thanks education buildings, and, so, will be consistent with this type of buildings, but probably not so with other types of buildings;
+\item The buildings taken into account for this study are reparted around 16 different geographical sites, with their own specific weather conditions. As for previous conclusion, the observed repartition is not well balanced, thus, too, it is quite probable that the prediction models we are going to built will present some kind of bias, due to the fact that during the training they will be more exposed to some specific weather conditions;
 \item Respectively to buildings gross floor area, we note approximately 7.32\% of outliers, element important to tackle, as it appears obvious that a building's gross floor area impacts its energy consumption.
 \end{itemize}
 
@@ -301,7 +301,7 @@ During the exploration we performed of this tabular data file, we observed that 
 
 \subsubsection{\textit{weather\_train.csv}}
 
-The second tabular data file (see Table \ref{tab:weather}) contains, over the year $2016$, some weather's conditions registered on the various site IDs exploted during this study (see Figures \ref{fig:evolution_air_temperature_by_site_id}, \ref{fig:evolution_dew_temperature_by_site_id}, \ref{fig:evolution_wind_direction_by_site_id} and \ref{fig:evolution_wind_speed_by_site_id}).
+The second tabular data file (see Table \ref{tab:weather}) contains, over the year $2016$, some weather's conditions registered on the various site IDs exploited during this study (see Figures \ref{fig:evolution_air_temperature_by_site_id}, \ref{fig:evolution_dew_temperature_by_site_id}, \ref{fig:evolution_wind_direction_by_site_id} and \ref{fig:evolution_wind_speed_by_site_id}).
 
 \begin{figure}[H]
 \centering
@@ -334,7 +334,7 @@ The second tabular data file (see Table \ref{tab:weather}) contains, over the ye
 On this tabular data file, some conclusions can be stated:
 
 \begin{itemize}
-\item By site ID, evolutions of air temperature, dew temperature, wind direction and wind speed cover un important spectrum of possibilities, nonetheless, for air temperature, for exemple, depending of the month of the year and season, some common tendencies can be noted whatever the site ID considered: This will have an impact on the the prediction models we will build, indeed, they will be trained only with data related to year $2016$, and they won't probably be able to catch year periodicity on the data and associated energy consumption (they won't probably be able to catch, too, certain epiphenomena, as Christmas and New Year holidays, element which provocs a discontinous and brutal change on energy consumption);
+\item By site ID, evolution of air temperature, dew temperature, wind direction and wind speed covers un important spectrum of possibilities, nonetheless, for air temperature, for exemple, depending of the month of the year (and season), some common tendencies can be noted whatever the site ID considered: This will have an impact on the prediction models we will build, indeed, they will be trained only with data related to year $2016$, and they won't probably be able to catch year periodicity on the data and associated energy consumption (they won't probably be able to catch, too, certain epiphenomena, as Christmas and New Year holidays, element which provocs a discontinous and brutal change on energy consumption);
 \item Features \textit{cloud\_coverage}, \textit{precip\_depth\_1\_hr}, and, to a lesser extent, \textit{sea\_level\_pressure}, count an import proportion of missing values (respectively 49.49\%, 35.98\% and 7.60\%), while this is not the case for the other features (less than 5\%). This is an important issue for these features (for \textit{cloud\_coverage}, e.g., we can reasonably assume that the impact on electricity consumption to light a building is not insignificant).
 \end{itemize}
 
@@ -412,7 +412,7 @@ We have now a better vision of the problem and the way we are going to tackle it
 \item We terminate the preprocessing with the splitting of the data set into $4$ parts, each one of them corresponding to one particular energy type (electricity, chilled water, steam and hot water), and with removing outliers for meter reading registrations.
 \end{enumerate}
 
-This way, we obtain a consistent data set---to split, for each one of the $4$ energy type, between a training set (80\%) and a testing set (20\%) in a shuffled way---composed by:
+This way, we obtain a consistent data set---to split, for each one of the $4$ energy types, between a training set (80\%) and a testing set (20\%) in a shuffled way---composed by:
 
 \begin{itemize}
 \item $9,868,987$ data points, $39$ feature variables and $1$ target variable for building electricity meter consumption forecasting model;
@@ -427,7 +427,7 @@ This way, we obtain a consistent data set---to split, for each one of the $4$ en
 
 \subsection{General Methodology}
 
-As it was precised in Subsection \ref{sub:problem_statement}, in this project, our main focus is to perform a "benchmarking" of $2$ currently popular and very performant methods: Extreme Gradient Boosting (also known as XGBoost, see \cite{Chen_2016}) and Light Gradient Boosting Machine (also known as LightGBM, see \cite{Ke_2017}). For that, using Root Mean Squared Logarithmic Error (RMSLE) as quality metric to evaluate produced prediction models (see Subsection \ref{sub:quality_metric}) and a "naive" forecasting model (a forecasting prediction model which always predicts the mean value of all meter readings registered in each energy type data set), to appreciate the value provided by the $2$ "benchmarked" methods, we are going to put them in action, and tuned their hyperparameters as the hardware at our disposal (see Table \ref{tab:hardware}) allows us to do it.
+As it was precised in Subsection \ref{sub:problem_statement}, in this project, our main focus is to perform a "benchmarking" of $2$ current popular and very performant methods: Extreme Gradient Boosting (also known as XGBoost, see \cite{Chen_2016}) and Light Gradient Boosting Machine (also known as LightGBM, see \cite{Ke_2017}). For that, using Root Mean Squared Logarithmic Error (RMSLE) as quality metric to evaluate produced prediction models (see Subsection \ref{sub:quality_metric}) and a "naive" forecasting model (a forecasting prediction model which always predicts the mean value of all meter readings registered in each energy type data set), to appreciate the value provided by these $2$ methods, we are going to put them in action, and tune their hyperparameters as the hardware at our disposal (see Table \ref{tab:hardware}) allows us to do it.
 
 Respectively to XGBoost, as precised in its documentation, we can note that:
 
@@ -510,7 +510,7 @@ An illustration of this benchmarking situation can be visualized on Figure \ref{
 \label{fig:electricity_benchmarking_illustration}
 \end{figure}
 
-Finally, to explain XGBoost model predictions on testing set---data not used for building the model, so, data on for which model's behaviour when confronted with "unknown" data, "real-life" data, can be observed---, SHAP (SHapley Additive exPlanations) values have been mobilized, allowing us a better comprehension of the forecasting processing: This game theoretic approach is being increasingly used to explain the output of any machine learning model (see \cite{Lundberg_2017} and \cite{Lundberg_2020}).
+Finally, to explain XGBoost model predictions on testing set---data not used for building the model, so, data which allows to observe model's behaviour when confronted with "unknown" data, "real-life" data---, SHAP (SHapley Additive exPlanations) values have been mobilized, allowing us a better comprehension of the forecasting processing: This game theoretic approach is being increasingly used to explain the output of any machine learning model (see \cite{Lundberg_2017} and \cite{Lundberg_2020}).
 
 An overview of which features are most important for the model is plotted on Figure \ref{fig:shap_values_summary_plot_electricity}, where the SHAP values of every feature for every sample are summarized.
 
@@ -533,7 +533,7 @@ Here, we can observe what features drive the predictions on the testing set, and
 \item Education as primary use.
 \end{enumerate}
 
-So, for example, analyzing the $2$ most important features, in accordance with what was intuitively expected, we can note that the highest the building's surface is, the more electricity consumption will be, and that being during labour hours, electricity consumption augments. It is equally interesting, too, to observe that air temperature and dew temperature have an important impact with the predictions of our model. Furthermore, if building's primary use belongs to education, office, residence, public assembly, public services, healthcare and parking, this aspect seems to be very discriminating for electricity consumption forecasting model's processing.
+So, for example, analyzing the $2$ most important features, in accordance with what was intuitively expected, we can note that the highest the building's surface is, the more electricity consumption will be, and that being during labour hours, electricity consumption increases. It is equally interesting, too, to observe that air temperature and dew temperature have an important impact with the predictions of our model. Furthermore, if building's primary use belongs to education, office, residence, public assembly, public services, healthcare and parking, this aspect seems to be very discriminating for electricity consumption forecasting model's processing.
 
 \subsection{Buildings' Chilled Water Meter Consumption Forecasting}
 
@@ -694,7 +694,7 @@ In this graph, we can observe what features drive the predictions on the testing
 \item Week's position in the year.
 \end{enumerate}
 
-So, for example, analyzing the $2$ most important features, in accordance with what was intuitively expected, we can note that the highest the building's surface is, the more hot water consumption will be, and, the hotest the air temperature is, the less hot water consumption will be. It is interesting to note, too, that building's primary use (espacially education, office, public services and healthcare) seems to have disruptive impact for hot water consumption forecasting model's processing.
+So, for example, analyzing the $2$ most important features, in accordance with what was intuitively expected, we can note that the highest the building's surface is, the more hot water consumption will be, and, the hotest the air temperature is, the less hot water consumption will be. It is interesting to note, too, that building's primary use (especially education, office, public services and healthcare) seems to have disruptive impact for hot water consumption forecasting model's processing.
 
 %% Proposed Solution %%
 
@@ -706,7 +706,7 @@ Nevertheless, some indications can be provided to go further this work and deepe
 
 \begin{itemize}
 \item Firstly, a more complete work can be performed about the data put at disposal, principally about missing data and ways to explore to try te reconstruct it. For example, respectively to the data linked to weather conditions, trying to figure out the exact localizations of the $16$ site IDs mobilized for this study, it's probably possible to gather the needed information to fill missing values, or at least some of them.
-\item Secondly, with less limited hardware, a consistent work about hyperparameters tuning---for both XGBoost and LightGBM models---could be realized. Here, we have operated a randomized search on key hyperparameters of both XGBoost and LightGBM, but we have been very limited in our action. An interesting perspective to explore---and a smarter way to proceed---is to combine randomized search and grid search: In a first step, randomized search can be used with a large hyperparameters grid, then, in a second step, exploiting the results that have been obtained, a focused hyperparameters grid around the best performing hyperparameters values can be established, after that, in a third step, a grid search can be run on this reduced hyperparameters grid, process that can be reapeted (until maximum computational/time budget is exceeded). Bayesian hyperparameters optimization could equally constitute an interesting way to follow (see, e.g., \cite{Bergstra_2013}).
+\item Secondly, with less limited hardware, a consistent work about hyperparameters tuning---for both XGBoost and LightGBM models---could be realized. Here, we have operated a randomized search on key hyperparameters of both XGBoost and LightGBM, but we have been very limited in our action. An interesting perspective to explore---and a smarter way to proceed---is to combine randomized search and grid search: In a first step, randomized search can be used with a large hyperparameters grid, then, in a second step, exploiting the results that have been obtained, a focused hyperparameters grid around the best performing hyperparameters values can be established, and, after that, in a third step, a grid search can be run on this reduced hyperparameters grid, process that can be reapeted (until maximum computational/time budget is exceeded). Bayesian hyperparameters optimization could equally constitute an interesting way to follow (see, e.g., \cite{Bergstra_2013}).
 \item Thirdly, and lastly, more complex architectures for the forecasting process can be tried to reach better scores (e.g., using a voting regressor, or decomposing data domain used for training).
 \end{itemize}
 
